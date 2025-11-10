@@ -636,4 +636,4 @@ This class covered:
 - Process management commands for monitoring and controlling running programs
 - Permissions and ownership management
 
-Mastering these concepts provides the foundation for working with cloud infrastructure and Linux-based systems in DevOps environments.
+Mastering these concepts provides the foundation for working with cloud infrastructure and Linux-based systems in DevOps environments. 

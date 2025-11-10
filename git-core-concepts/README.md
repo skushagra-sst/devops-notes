@@ -481,4 +481,4 @@ Git is a distributed version control system that:
 - `git branch` - Manage branches
 - `git merge` - Combine branches
 
-Mastering Git enables efficient collaboration, safe experimentation, and reliable code management.
+Mastering Git enables efficient collaboration, safe experimentation, and reliable code management. 

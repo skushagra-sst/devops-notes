@@ -479,4 +479,4 @@ Shell scripting is essential for DevOps automation. Key concepts covered:
 - **Best practices:** Error handling, validation, reusable functions
 - **Advanced topics:** ACLs for fine-grained permissions
 
-Mastering these concepts enables automation of repetitive tasks, system administration, and DevOps workflows.
+Mastering these concepts enables automation of repetitive tasks, system administration, and DevOps workflows. 
