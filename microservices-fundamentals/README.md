@@ -297,3 +297,4 @@ Microservices architecture provides a way to build large, complex applications a
 - Following cloud-native principles like the 12-Factor App methodology
 
 This architecture enables teams to work independently, deploy services separately, and scale components based on individual needs, leading to more resilient and maintainable systems.
+
