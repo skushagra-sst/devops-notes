@@ -1,0 +1,56 @@
+name: CI/CD Pipeline with Kubernetes
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Set up JDK
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+    
+    - name: Build and Test
+      run: |
+        mvn clean package
+        mvn test
+    
+    - name: Build Docker Image
+      run: docker build -t myapp:${{ github.sha }} .
+    
+    - name: Push to Registry
+      run: |
+        echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+        docker push myapp:${{ github.sha }}
+
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Configure kubectl
+      run: |
+        mkdir -p $HOME/.kube
+        echo "${{ secrets.KUBECONFIG }}" | base64 -d > $HOME/.kube/config
+    
+    - name: Deploy to Kubernetes
+      run: |
+        kubectl set image deployment/myapp \
+          myapp=myapp:${{ github.sha }} \
+          -n default
+        kubectl rollout status deployment/myapp -n default
+    
+    - name: Verify Deployment
+      run: |
+        kubectl get pods -n default
+        kubectl get services -n default
